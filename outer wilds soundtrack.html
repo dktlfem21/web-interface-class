@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+
+		html,body{
+			margin: 0;
+			padding: 0;
+		}
+
+		img{
+
+			size: 100%;
+
+			white-space: nowrap;
+			border: 0px;
+			
+		}
+
+		input[type=range]{
+			-webkit-appearance:  none;
+			width: 20%;
+			height: 3px;
+ 			border-radius: 5px;
+ 			outline: 0;
+  			border: 10px;
+
+		}
+
+
+		#grid{
+			display: grid;
+			grid-template-columns: 480px 480px 480px 1fr;
+		}
+
+		#text{
+
+			text-align: center;
+			color:white;
+			font-size: 50px;
+			margin-top:30px ;
+			margin-bottom: 30px;
+		}
+
+		#sss{
+			color: white;
+		}
+
+	</style>
+</head>
+
+
+
+	
+<body style="background-color: black;">
+
+	<audio id="titleSnd" src="sound/02. Outer Wilds.mp3"></audio>
+	<audio id="timberHearthSnd" src="sound/01. Timber Hearth.mp3"></audio>
+	<audio id="giantsDeepSnd" src="sound/15. Giant's Deep.mp3"></audio>
+	<audio id="darkBrambleSnd" src="sound/14. Dark Bramble.mp3"></audio>
+
+	<div id="grid"> 
+
+		<img id = "titleImg"  src="images/title.png" alt="타이틀"><img id = "timberHearthImg"  src="images/Timber Hearth.png" alt="목재화로"><img id = "giantsDeepImg"  src="images/Giant's Deep.png" alt="거인의심연"><img id = "darkBrambleImg"  src="images/Dark Bramble.png" alt="검은가시덤불">
+
+	</div>
+
+	<div id="text">
+		<div>Outer wilds song</div>
+	</div>
+
+
+	<div style="text-align: center;">
+	
+	<input id="vol" type="range" max="100" min="0">
+	
+
+	</div>
+
+	<div id="sss" style="text-align: center; ">It's time for the new astronauts to take off</div>
+	
+<script type="text/javascript">
+
+
+		vol.value = 100;
+		vol.oninput = function(){
+			titleSnd.volume = vol.value / 100;
+			timberHearthSnd.volume = vol.value / 100;
+			giantsDeepSnd.volume = vol.value / 100;
+			darkBrambleSnd.volume = vol.value / 100;
+		}
+
+		var tstate = "off";
+		var hstate = "off";
+		var gstate = "off";
+		var dstate = "off";
+
+		titleImg.onclick = function() {
+
+			var songTitle = document.getElementById("text");
+			songTitle.innerText = "02. Outer Wilds";
+
+			if (tstate=="off") {
+				titleSnd.play();
+				tstate = "on"
+				timberHearthSnd.pause();
+				hstate = "off"
+				giantsDeepSnd.pause();
+				gstate = "off"
+				darkBrambleSnd.pause();
+				dstate = "off"
+			}else if (tstate=="on") {
+				titleSnd.pause();
+				tstate = "off"
+			}
+		}
+
+		timberHearthImg.onclick = function(){
+
+			var songTitle = document.getElementById("text");
+			songTitle.innerText = "01. Timber Hearth";
+
+
+			if (hstate=="off"){
+				timberHearthSnd.play();
+				hstate = "on"
+				titleSnd.pause();
+				tstate = "off"
+				giantsDeepSnd.pause();
+				gstate = "off"
+				darkBrambleSnd.pause();
+				dstate = "off"
+			}else {
+				timberHearthSnd.pause();
+				hstate = "off"
+			}
+
+		}
+		giantsDeepImg.onclick = function(){
+
+			var songTitle = document.getElementById("text");
+			songTitle.innerText = "14. Dark Bramble";
+
+			if (gstate=="off") {
+				giantsDeepSnd.play();
+				gstate = "on"
+				titleSnd.pause();
+				tstate = "off"
+				timberHearthSnd.pause();
+				hstate = "off"
+				darkBrambleSnd.pause();
+				dstate = "off"
+			}else{
+				giantsDeepSnd.pause();
+				gstate = "off"
+			}
+		}
+		darkBrambleImg.onclick = function(){
+
+			var songTitle = document.getElementById("text");
+			songTitle.innerText = "15. Giant's Deep";
+			
+			if (dstate=="off") {
+				darkBrambleSnd.play();
+				dstate = "on"
+				titleSnd.pause();
+				tstate = "off"
+				timberHearthSnd.pause();
+				hstate = "off"
+				giantsDeepSnd.pause();
+				gstate = "off"
+			}else{
+				darkBrambleSnd.pause();
+				dstate = "off"
+			}
+
+		}
+
+
+
+		
+	</script>
+
+
+
+</body>
+</html>
